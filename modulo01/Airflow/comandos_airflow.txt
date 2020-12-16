@@ -1,0 +1,7 @@
+comandos para subir o airflow:
+-> airflow initdb
+-> airflow scheduler
+-> airflow webserver -p 8080
+
+Para acessar a admin do airflow
+http://localhost:8080/

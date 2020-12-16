@@ -1,0 +1,25 @@
+﻿DADOS - GMAIL
+e-mail: alunoigti999@gmail.com
+senha: Roncato2302
+
+DAODS - TWITTER
+e-mail: alunoigti999@gmail.com
+senha: Roncato2302
+user_name: @999Igti
+app_name: appigti999
+app_key: cB9hCAyxyFye98kFjzvlht55q
+api_secret_key: OMkSWaz974wVtGS7J8U78uxsoYrsW68xXtxQ50PLgus7ewmILc
+bearer_token: AAAAAAAAAAAAAAAAAAAAAPJ5KAEAAAAApHZZX24wVm7BHZZT2XEtdOKgII4%3DyoDLMdvV6gFeS8WziCHBFX5WmFQRbHTU0f0kFMpnUEnRz06SiS
+
+Access token: 1332065578643841024-nXgaMr91YwmeVqHn0SDXKVJIzeIkI0
+Access token secret: hZREWp02U4u3NonzcftENHWgG4LIiLXbdq214uI0JdniN
+
+Texto:
+I plan to use Twitter Developer account for academic reasons. 
+In our class we will study how to develop software to make request to Twitter API.
+This is part of academic activities of IGTI institution. I'm enrolled 
+on the Data Engineering Bootcamp.Prof Neylson Crepalde is reponsible for the class.
+
+We will analyze twitter data just for academic purposes. We will 
+implement text analysis and descriptive statitical analysis of data.
+The goal is to develop an analytical software that connect to Twitter.

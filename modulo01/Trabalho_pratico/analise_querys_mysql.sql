@@ -1,0 +1,15 @@
+﻿select avg(nu_nota_mt) from  dw.enemmg;
+select avg(nu_nota_lc) from  dw.enemmg;
+select avg(e.nu_nota_ch) from  dw.enemmg e where e.tp_sexo = 'F';
+select avg(e.nu_nota_ch) from  dw.enemmg e where e.tp_sexo = 'M';
+select avg(e.nu_nota_mt) from  dw.enemmg e where e.tp_sexo = 'F' and e.NO_MUNICIPIO_RESIDENCIA = 'Montes Claros';
+select avg(e.nu_nota_mt) from  dw.enemmg e where e.q021 = 'B' and e.NO_MUNICIPIO_RESIDENCIA = 'Sabará';
+select avg(e.nu_nota_ch) from  dw.enemmg e where e.q016 = 'C';
+select avg(e.nu_nota_mt) from  dw.enemmg e where e.q002 = 'G';
+select avg(e.nu_nota_mt) from  dw.enemmg e where e.NO_MUNICIPIO_RESIDENCIA in ('Belo Horizonte', 'Conselheiro Lafaiete');
+select avg(e.nu_nota_ch) from  dw.enemmg e where e.q005 = 1;
+select avg(e.nu_nota_ch) from  dw.enemmg e where e.q001 = 'G' and e.q006 = 'M';
+select avg(e.nu_nota_mt) from  dw.enemmg e where e.tp_sexo = 'F' and e.NO_MUNICIPIO_RESIDENCIA = 'Lavras' and e.TP_LINGUA = 1;
+select avg(e.nu_nota_mt) from  dw.enemmg e where e.tp_sexo = 'M' and e.NO_MUNICIPIO_RESIDENCIA = 'Ouro Preto';
+select avg(e.nu_nota_ch) from  dw.enemmg e where e.IN_SURDEZ = 1;
+select avg(e.nu_nota_mt) from  dw.enemmg e where e.tp_sexo = 'F' and e.NO_MUNICIPIO_RESIDENCIA in ('Belo Horizonte','Sabará','Nova Lima','Betim') and e.IN_DISLEXIA = 1;

@@ -1,0 +1,2 @@
+abrir cmd no diretorio: C:\ProgramFiles\MongoDB\Server\3.6\bin
+executar comando no cmd: mongod.exe --dbpath c:\data\db

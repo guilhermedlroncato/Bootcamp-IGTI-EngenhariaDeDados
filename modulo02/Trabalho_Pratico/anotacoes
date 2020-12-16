@@ -1,0 +1,38 @@
+﻿-> db.livros.find().count()
+431
+
+-> db.livros.find({isbn:{$lte: "1000000000"}}).count()
+4
+
+-> db.livros.find({isbn:{$lte: "1617200000"}}).count()
+22
+
+->  criteria={isbn:{$lte: "1617200000"}}
+    db.livros.find(criteria, {"title":1})
+somente o livro com inicial cpm G: { "_id" : 39, "title" : "Graphics File Formats" }
+
+-> db.livros.insertMany([
+{"title" : "Saci Pererê", "isbn" : "100", "pageCount" : 0, "publishedDate": ISODate("2000-10-01T07:00:00Z"), "status" : "PUBLISH", "authors" : [ ], "categories" : [ ]},
+{"title" : "A Cuca", "isbn" : "99", "pageCount" : 0, "publishedDate": ISODate("2000-10-01T07:00:00Z"), "status" : "PUBLISH", "authors" : [ ], "categories" : [ ]},
+{"title" : "Curupira", "isbn" : "98", "pageCount" : 0, "publishedDate": ISODate("2000-10-01T07:00:00Z"), "status" : "PUBLISH", "authors" : [ ], "categories" : [ ]},
+{"title" : "Jeca Tatu", "isbn" : "97", "pageCount" : 0, "publishedDate": ISODate("2000-10-01T07:00:00Z"), "status" : "PUBLISH", "authors" : [ ], "categories" : [ ]}
+])
+
+-> db.livros.find({isbn:{$lte: "100000"}}).count()
+5
+
+-> db.livros.find({isbn:{$lte: "100000"}}, {title:1}).limit(2)
+ { "_id" : 211, "title" : "Comprehensive Networking Glossary and Acronym Guide" }
+ { "_id" : 274, "title" : "Personal Videoconferencing" }
+
+ -> db.livros.find({isbn:{$lte: "100000"}}, {title:1}).pretty().skip(2)
+ 3
+
+-> db.livros.find({title: /Windows/}, {title:1}).count()
+11
+
+-> db.livros.find({},{"pageCount":1, "_id":0}).sort({"pageCount":-1}).limit(2)
+{ "pageCount" : 1101 }
+{ "pageCount" : 1096 }
+
+
