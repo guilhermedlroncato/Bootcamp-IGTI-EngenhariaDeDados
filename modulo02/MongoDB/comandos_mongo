@@ -2,3 +2,4 @@
 use aula2 -- seleciona a base aula2 para uso
 db.users.find() -- lista todos os registors da collection users
 db.users.count() -- retorna a qtde de registros da collection users
+.
