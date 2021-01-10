@@ -1,0 +1,37 @@
+-> Acesso a VM
+user: igti 
+pass: igti
+
+-> conectar no mysql:
+mysql -u root -p
+user: igti
+pass: igti
+
+base do trabalho
+use IGTI
+
+tabela DADOS_GAME
+
+-> HDFS
+caminho do hadoop: /usr/local/hadoop/
+
+limpar a pasta temp: rm -r dfs
+
+Formatar: bin/hdfs namenode -format
+
+Iniciar os serviços: sbin/start-all.sh
+
+Consultar serviços Java rodando: jps
+
+Consultar o diretorio raiz do HDFS: bin/hdfs dfs -ls /
+
+-> SQOOP
+comando para importar os dados do mysql para o HFS
+- cd /usr/local/sqoop
+- bin/sqoop import --connect jdbc:mysql://localhost/IGTI?zeroDateTimeBehavior=convert_To_Null --username root
+--password igti --table DADOS_GAME -m 1 --bindir /usr/local/sqoop/lib --target-dir /user/igti/DADOS_GAME
+
+-> Visualizar os dados Importados no HDFS 
+comando: bin/hdfs dfs -cat /user/igti/DADOS_GAME/part-m-00000
+
+
