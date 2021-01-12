@@ -1,0 +1,24 @@
+- cd /usr/local/spark
+  ./bin/spark-shell : Comando para abrir o shell do spark
+
+- val linhas = sc.textFile("/usr/local/spark/README.md") : Criar um RDD a partir de um arquivo texto
+- linhas.count() : Retorna o numero de linhas do RDD
+- linhas.first() : Retorna a primeira linha do RDD
+- val linhasCluster = linhas.filter(line => line.contains("cluster")) : Criar um um novo RDD filtrando as linhas que contem "cluster" no RDD linhas
+- val linhasTotal = linhas.union(linhasCluster) : Criar um novo RDD atraves de um union entre dois RDD
+- val resultado = numeros.map(x => x * (-1)) : Função Map para aplicar transformação a cada linhas do RDD
+- println(resultado.collect().mkString(",")) : Imprime os elementos do RDD separados por ","
+- val resultado_maior = numeros.filter(x => x > 10) : APlica um filtro no RDD para gerar um novo RDD
+
+** Agregações, Ordenações e Agrupamentos
+- val arquivo = sc.textFile("/usr/local/spark/README.md") : Criar um RDD a partir de um arquivo texto
+- val palavras = arquivo.flatMap(x => x.split(" ")) : Cria um array onde cada palavra vira um elemento
+- val resultado = palavras.map(x => (x, 1)).reduceByKey((x, y) => x + y) : Criar um RDD de Chave Valor, onde a chave é a palavra e o valor é a qtde de vezes que a Palavra apaceu no arquivo
+
+- val clientes_vendas = sc.parallelize(Array(("Abel", 500), ("Bel", 100), ("Abel", 2000), ("Cris", 500) )) : Cria um RDD com um Array de Chave Valor
+- clientes_vendas.countByKey() : Retorna o numero de Chaves e suas qtdes com contem no RDD
+- clientes_vendas.lookup("Abel") : Localiza os valores atraves de uma Chave
+- clientes_vendas.sortByKey().collect() : Retorna o RDD ordenado pela Chave em ordem crescente
+- clientes_vendas.sortByKey(false).collect() : Retorna o RDD ordenado pela Chave em ordem decrescente
+
+

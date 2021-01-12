@@ -1,0 +1,29 @@
+Carregando os dados do HDFS para um RDD spark
+- val dados = sc.textFile("hdfs://localhost:54310/user/igti/DADOS_GAME/part-m-000")
+
+Criando um DataFrame para trabalhar com spark_sql
+- val dfGames = spark.read.csv("hdfs://localhost:54310/user/igti/DADOS_GAME/part-m-000")
+
+Comando para ver o schema do dataframe criado
+- dfGames.printSchema
+
+Criando uma temp view para rodar as querys SQL
+- dfGames.createOrReplaceTempView("DADOS_GAME")
+
+Rodando uma query na temp view
+- spark.sql("select * from DADOS_GAME").show(231) : 231 é o numero de linhas que irá retorna no shell
+- spark.sql("select _c3, sum(_c10) from DADOS_GAME group by _c3 order by _c3").show(231)
+
+Comandos utilizados nas questões do Desafio:
+1)  - spark.sql("select _c3, sum(_c10) from DADOS_GAME where _c3 = 1992 group by _c3").show(231)
+3)  - spark.sql("select _c3, sum(_c10) as vendas from DADOS_GAME group by _c3 having vendas > 20.0").show(231)
+6)  - spark.sql("select _c3, sum(_c10) from DADOS_GAME where _c3 = 1983 group by _c3").show(231)
+7)  - spark.sql("select count(*) from (select _c3, sum(_c10) as vendas from DADOS_GAME group by _c3 having vendas > 15.0)").show(231)
+9)  - spark.sql("select _c4, sum(_c10) as vendas from DADOS_GAME group by _c4 order by vendas desc").show(3)
+10) - spark.sql("select _c4, _c3, sum(_c10) as vendas from DADOS_GAME where _c4 = 'Adventure' group by _c4, _c3 order by vendas desc").show(1)
+11) - spark.sql("select _c4, _c3, sum(_c10) as vendas from DADOS_GAME where _c4 = 'Sports' group by _c4, _c3 order by vendas desc").show(1)
+12) - spark.sql("select sum(_c10) as vendas from DADOS_GAME where _c5 = 'Electronic Arts'").show(1)
+13) - spark.sql("select sum(_c10) as vendas from DADOS_GAME where _c5 = 'Activision'").show(1)
+14) - spark.sql("select _c3, sum(_c10) as vendas from DADOS_GAME where _c5 = 'Activision' group by _c3 order by vendas desc").show(1)
+15) - spark.sql("select _c5, sum(_c10) as vendas from DADOS_GAME where _c3 >= 1980 and _c3 <= 1989 group by _c5 order by vendas desc").show(1)
+    - spark.sql("select _c5, sum(_c10) as vendas from DADOS_GAME where _c3 >= 1990 and _c3 <= 1999 group by _c5 order by vendas desc").show(1)
