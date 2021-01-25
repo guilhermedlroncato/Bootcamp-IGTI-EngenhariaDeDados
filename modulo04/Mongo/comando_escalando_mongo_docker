@@ -1,0 +1,32 @@
+-> Baixar a image mongo do repositório oficial no docker
+docker pull mongo
+
+-> Criar uma metwork no dcker
+ docker network create net-cluster-mongo
+
+ -> Consultar as network no docker
+ docker network ls
+
+ -> Criação dos 3 nodes do mongo no Docker
+ node01:  docker run -d -p 30001:27017 --name btc-node01 -h btc-node01 --net net-cluster-mongo mongo mongod --replSet lab-btc_rs0
+ node02:  docker run -d -p 30002:27017 --name btc-node02 -h btc-node02 --net net-cluster-mongo mongo mongod --replSet lab-btc_rs0
+ node03:  docker run -d -p 30003:27017 --name btc-node03 -h btc-node03 --net net-cluster-mongo mongo mongod --replSet lab-btc_rs0
+
+-> Acessando o node01 no docker
+docker exec -it btc-node01 /bin/bash
+
+-> Comando para subir o cluster no mongo
+config={ _id : "lab-btc_rs0", members : [ {_id : 0, host: "btc-node01:27017"}, {_id : 1, host: "btc-node02:27017"} ] }
+rs.initiate (config)
+
+-> Criando um DB e uma collectino no node01:
+db.databaseCriado.insert({"data_cricao_database": new Date(), "motivo_solicitacao": 'Laboratorio de Bootcampo'});
+
+-> Consultando os dados do collection
+db.databaseCriado.find().pretty()
+
+-> Acessar o node02 com permissão do node01 para poder manipular as collections
+mongo --host "lab-btc_rs0/btc-node01:27017,btc-node02:27017"
+
+-> Adcionando o node03 ao cluster mongo
+ rs.add("btc-node03:27017")

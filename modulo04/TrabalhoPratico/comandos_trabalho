@@ -1,0 +1,51 @@
+-> Criando um container chamado lab-btc01
+ docker run -d --name lab-btc01 mongo;
+
+-> Consultar o uso de recursos do container
+ docker stats lab-btc01
+
+-> Lista o IP associado ao container lab-btc01
+ docker inspect --format '{{.NetworkSettings.IPAddress}}' lab-btc01;
+
+-> Listar o file system do container, sem entrar no container
+ docker exec -it lab-btc01 df -kh
+
+-> Acessar o container via terminal
+docker exec -it lab-btc01 /bin/bash
+
+-> Listar o sistema operacional do container
+cat /etc/issue
+
+-> Habilitando o SaaS no MongoDB
+db.enableFreeMonitoring()
+
+-> Criando uma rede para o cluster
+docker network create net-cluster-mongo
+
+-> Criando os containers dos 3 nodes já com o parametro do Replica Set
+docker run -d -p 30001:27017 --name btc-node01 -h btc-node01 --net net-cluster-mongo mongo mongod --replSet lab-btc_rs0
+docker run -d -p 30002:27017 --name btc-node02 -h btc-node02 --net net-cluster-mongo mongo mongod --replSet lab-btc_rs0
+docker run -d -p 30003:27017 --name btc-node03 -h btc-node03 --net net-cluster-mongo mongo mongod --replSet lab-btc_rs0
+
+-> Criando variavel com as configurações do Replica Set
+config={_id: "lab-btc_rs0", members: [ {_id: 0, host: "btc-node01:27017"}, {_id: 1, host: "btc-node02:27017"} ] }
+
+-> Iniciando o Replica Set no node01 usando a variavel de configurações
+ rs.initiate (config)
+
+ -> Criando um novo banco de dados chamado BDBTC e criando uma collection
+ use BDBTC;
+ db.databaseCriado.insert({"data_criacao_database":new Date(),
+"motivo_solicitacao":"Laboratório de Bootcamp"});
+
+-> Acessando o mondo do node02 e ativando ele como slave
+rs.slaveOk()
+
+-> Acessano o mongo do node02 com a  string de conexão com replica set
+mongo --host "lab-btc_rs0/btc-node01:27017,btc-node02:27017"
+
+-> Adicionando mais servidor no replica set Mongo db
+rs.add("btc-node03:27017")
+
+
+

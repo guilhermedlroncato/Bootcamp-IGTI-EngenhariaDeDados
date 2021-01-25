@@ -1,0 +1,36 @@
+** Comandos para rodar no shell do windows ou terminal linux
+
+-> listar todas as images do docker:
+docker images
+
+-> listas images disponivel na search padrão do Docker
+docker search mssql
+
+-> baixar imagem do repositório DOcker
+docker pull microsoft/mssql-server-linux
+
+-> como para baixar a image do repositório da microsoft
+ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=T3mpor4ria" -p 1433:1433 --name serverbtcsql -h serverbtcsql -d mcr.microsoft.com/mssql/server:2019-latest
+
+-> verificar o staus das images na maquina
+docker ps -a
+
+-> verificar somente as images que estão rodando
+docker ps
+
+-> comando para entrar no container baixo na microsoft
+docker exec -it serverbtcsql "bash"
+-> comando para acessar o SqlServer do container
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "T3mpor4ria"
+
+-> comando para sair do container
+exit
+
+-> comando para encerrar a execução de um container
+docker stop serverbtcsql
+
+-> comando para startar um container
+docker start serverbtcsql
+
+-> comando para destruir/apagar um container
+docker rm serverbtcsql
