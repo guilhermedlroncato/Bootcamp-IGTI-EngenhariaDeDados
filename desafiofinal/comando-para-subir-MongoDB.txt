@@ -1,0 +1,9 @@
+abrir cmd no diretorio: C:\ProgramFiles\MongoDB\Server\3.6\bin
+executar comando no cmd: mongod.exe --dbpath c:\data\db
+
+string de conexão ao MongoDB local
+mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false
+
+
+
+

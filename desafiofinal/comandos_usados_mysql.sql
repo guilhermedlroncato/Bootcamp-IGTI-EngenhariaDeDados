@@ -1,0 +1,10 @@
+﻿select * from dw.pnadc20203;
+select avg(renda) from dw.pnadc20203;
+select avg(renda) from dw.pnadc20203 where uf = 'Distrito Federal';
+select avg(renda) from dw.pnadc20203 where uf in ('São Paulo', 'Rio de Janeiro', 'Espirito Santo', 'Minas Gerais');
+select uf, avg(renda) from dw.pnadc20203 group by uf order by 2;
+select uf, avg(anosesco) from dw.pnadc20203 group by uf order by 2 desc;
+select avg(anosesco) from dw.pnadc20203 where uf = 'Parana' and idade between 25 and 30;
+select avg(renda) from dw.pnadc20203 where uf in ('Santa Catarina', 'Parana', 'Rio Grande do Sul') and idade between 25 and 35 and trab = 'Pessoas na força de trabalho';
+select sum(renda)/12 from dw.pnadc20203 where uf = 'Minas Gerais';
+select avg(renda) from dw.pnadc20203 where uf in ('Acre', 'Rondonia', 'Amazonas', 'Roraima', 'Amapa', 'Para', 'Tocantins') and idade between 25 and 35 and graduacao = 'Sim' and cor in ('Preta', 'Parda');

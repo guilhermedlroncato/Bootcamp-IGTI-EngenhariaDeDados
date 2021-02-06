@@ -1,0 +1,8 @@
+-> AWS
+login: guilhermeroncato@gmail.com
+pass: ******
+
+-> Instancia RDS AWS
+instancia: dw
+user: admin
+pass: roncato2302
