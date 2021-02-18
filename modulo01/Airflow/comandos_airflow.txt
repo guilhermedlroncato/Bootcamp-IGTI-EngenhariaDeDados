@@ -1,5 +1,5 @@
 comandos para subir o airflow:
--> airflow initdb
+-> airflow db init
 -> airflow scheduler
 -> airflow webserver -p 8080
 
